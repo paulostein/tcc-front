@@ -20,5 +20,6 @@ module.exports = {
     'react/jsx-no-constructed-context-values': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'react/button-has-type': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
 };

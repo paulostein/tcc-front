@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSession } from '../../hooks/useSession';
+import { useApi } from '../../hooks/useApi';
 import {
   Container,
   LoginBox,
@@ -11,17 +12,21 @@ import {
 import logo from '../../assets/pessoas.jpg';
 
 export default function Login() {
-  const { signIn } = useSession();
+  const { setUserSession } = useSession();
+  const { signIn } = useApi();
   const navigate = useNavigate();
   const [user, setUser] = useState();
   const [password, setPassword] = useState();
 
-  function handleSignIn() {
-    if (user === 'admin' && password === 'admin') {
-      signIn({ user, password });
-      navigate('/private');
-    } else {
-      console.log('nao');
+  async function handleSignIn() {
+    try {
+      if (user && password) {
+        const { data } = await signIn(user, password);
+        setUserSession(data);
+        navigate('/');
+      }
+    } catch (error) {
+      alert(error.response.data.message);
     }
   }
 

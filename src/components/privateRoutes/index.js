@@ -1,14 +1,20 @@
 import React from 'react';
-import Login from '../../pages/login';
+
 import { useSession } from '../../hooks/useSession';
+
+import Header from '../header';
+import Login from '../../pages/login';
 
 export default function PrivateRoutes({ children }) {
   const { session } = useSession();
-  const token = localStorage.getItem('token');
-
-  if (!session.token && !token) {
+  if (!session.token) {
     return <Login />;
   }
 
-  return children;
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  );
 }
