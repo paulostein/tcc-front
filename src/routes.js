@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Private from './pages/private';
-import PrivateRoutes from './components/privateRoutes';
+import AuthRoute from './components/authRoute';
 
 export default function Router() {
   return (
@@ -12,9 +12,9 @@ export default function Router() {
         <Route
           path="/"
           element={
-            <PrivateRoutes>
+            <AuthRoute>
               <Private />
-            </PrivateRoutes>
+            </AuthRoute>
           }
         />
       </Routes>
