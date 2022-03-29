@@ -17,20 +17,29 @@ function SessionProvider({ children }) {
     };
   }
 
+  function setInitialSession() {
+    const jwtToken = localStorage.getItem('token');
+    if (jwtToken) {
+      const user = getUserDataByToken(jwtToken);
+      setSession({ user, token: jwtToken });
+    }
+  }
+
   useEffect(() => {
     const validateToken = async () => {
       try {
         const jwtToken = localStorage.getItem('token');
         if (jwtToken) {
           const { id } = getUserDataByToken(jwtToken);
-          const user = await getUserData(id, jwtToken);
-          setSession({ user, token: jwtToken });
+          const { data } = await getUserData(id, jwtToken);
+          setSession({ user: data, token: jwtToken });
         }
       } catch (error) {
         localStorage.removeItem('token');
         console.error(error);
       }
     };
+    setInitialSession();
     validateToken();
   }, []);
 
@@ -45,8 +54,15 @@ function SessionProvider({ children }) {
     }
   }
 
+  function unsetUserSession() {
+    setSession({});
+    localStorage.removeItem('token');
+  }
+
   return (
-    <SessionContext.Provider value={{ session, setUserSession }}>
+    <SessionContext.Provider
+      value={{ session, setUserSession, unsetUserSession }}
+    >
       {children}
     </SessionContext.Provider>
   );

@@ -7,6 +7,7 @@ import Login from '../../pages/login';
 
 export default function AuthRoute({ children }) {
   const { session } = useSession();
+
   if (!session.token) {
     return <Login />;
   }

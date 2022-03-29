@@ -16,7 +16,7 @@ export default function Login() {
   const [user, setUser] = useState();
   const [password, setPassword] = useState();
 
-  async function handleSignIn() {
+  function handleSignIn() {
     if (user && password) {
       setUserSession(user, password);
       navigate('/');
@@ -30,7 +30,7 @@ export default function Login() {
       </ImageContent>
       <LoginBox>
         <h1>Bem-vindo!</h1>
-        <span>Entre para continuar usando NomeDaEmpresa</span>
+        <span>Entre para continuar usando o Facework</span>
         <FormInput>
           <div>Email</div>
           <input
