@@ -1,22 +1,14 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
+import { useApi } from './useApi';
 
 const SessionContext = createContext({});
 
 function SessionProvider({ children }) {
+  const { signIn, getUserData } = useApi();
   const [session, setSession] = useState({});
 
-  useEffect(() => {
-    const validateToken = () => {
-      const storageData = localStorage.getItem('token');
-      if (storageData) {
-        setSession({ token: storageData });
-      }
-    };
-    validateToken();
-  }, []);
-
-  function getUsarData(token) {
+  function getUserDataByToken(token) {
     const { id, name, email } = jwtDecode(token);
     return {
       id,
@@ -25,10 +17,32 @@ function SessionProvider({ children }) {
     };
   }
 
-  function setUserSession(token) {
-    const user = getUsarData(token);
-    setSession({ user, token });
-    localStorage.setItem('token', token);
+  useEffect(() => {
+    const validateToken = async () => {
+      try {
+        const jwtToken = localStorage.getItem('token');
+        if (jwtToken) {
+          const { id } = getUserDataByToken(jwtToken);
+          const user = await getUserData(id, jwtToken);
+          setSession({ user, token: jwtToken });
+        }
+      } catch (error) {
+        localStorage.removeItem('token');
+        console.error(error);
+      }
+    };
+    validateToken();
+  }, []);
+
+  async function setUserSession(email, password) {
+    try {
+      const { data: token } = await signIn(email, password);
+      const user = getUserDataByToken(token);
+      setSession({ user, token });
+      localStorage.setItem('token', token);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   }
 
   return (

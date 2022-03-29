@@ -9,7 +9,7 @@ export const useApi = () => ({
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const { data } = await api.post(`login/${id}`, {}, config);
+    const { data } = await api.get(`user/${id}`, config);
     return data;
   },
 });
