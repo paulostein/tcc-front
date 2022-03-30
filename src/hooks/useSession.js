@@ -36,6 +36,7 @@ function SessionProvider({ children }) {
         }
       } catch (error) {
         localStorage.removeItem('token');
+        setSession({});
         console.error(error);
       }
     };
