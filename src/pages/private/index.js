@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Private() {
-  return <div>.</div>;
+  return <div>pagina privada</div>;
 }

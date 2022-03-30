@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { FaUser } from 'react-icons/fa';
+import { IoMdExit } from 'react-icons/io';
 
 import { useSession } from '../../hooks/useSession';
 
@@ -24,8 +26,14 @@ export default function Header() {
       <Dropdown>
         <Profile>{profile}</Profile>
         <div className="dropdown-content">
-          <Link to="/profile">Meu perfil</Link>
-          <div onClick={handleLogOut}>Sair</div>
+          <div className="button">
+            <FaUser className="icon" />
+            <Link to="/profile">Meu perfil</Link>
+          </div>
+          <div className="button">
+            <IoMdExit className="icon" />
+            <div onClick={handleLogOut}>Sair</div>
+          </div>
         </div>
       </Dropdown>
     </HeaderContainer>

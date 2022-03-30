@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { useSession } from '../../hooks/useSession';
-
 import Header from '../header';
+import SideBar from '../sideBar';
 import Login from '../../pages/login';
+
+import { Container } from './styles';
 
 export default function AuthRoute({ children }) {
   const { session } = useSession();
@@ -15,7 +17,8 @@ export default function AuthRoute({ children }) {
   return (
     <>
       <Header />
-      {children}
+      <SideBar />
+      <Container>{children}</Container>
     </>
   );
 }

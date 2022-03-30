@@ -8,7 +8,7 @@ import {
   FormInput,
   LoginDetails,
 } from './styles';
-import logo from '../../assets/pessoas.jpg';
+import image from '../../assets/people.jpg';
 
 export default function Login() {
   const { setUserSession } = useSession();
@@ -26,7 +26,7 @@ export default function Login() {
   return (
     <Container>
       <ImageContent>
-        <img src={logo} alt="logo" />
+        <img src={image} alt="image" />
       </ImageContent>
       <LoginBox>
         <h1>Bem-vindo!</h1>

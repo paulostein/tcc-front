@@ -25,14 +25,14 @@ export const LoginBox = styled.div`
   justify-content: center;
 
   h1 {
-    color: #ff0054;
+    color: var(--color-primary);
     margin-bottom: 8px;
     font-size: 48px;
   }
 
   span {
     font-size: 12px;
-    color: #474342;
+    color: grey;
   }
 
   button {
@@ -43,9 +43,11 @@ export const LoginBox = styled.div`
     border-radius: 4px;
     border: none;
     font-weight: bold;
-    background: #ec008c;
-    background: -webkit-linear-gradient(to right, #fc6767, #ec008c);
-    background: linear-gradient(to right, #fc6767, #ec008c);
+    background: linear-gradient(
+      to right,
+      var(--color-primary),
+      var(--color-primary)
+    );
     padding: 12px 48px;
   }
 
@@ -77,7 +79,7 @@ export const FormInput = styled.div`
   }
 
   input:focus {
-    border-bottom: 1px solid #ec008c;
+    border-bottom: 1px solid var(--color-primary);
   }
 `;
 
@@ -101,7 +103,7 @@ export const LoginDetails = styled.div`
       -moz-appearance: none;
       -o-appearance: none;
       appearance: none;
-      border: 1px solid #fc6767;
+      border: 1px solid var(--color-primary);
       border-radius: 4px;
       outline: none;
       transition-duration: 0.3s;
@@ -110,8 +112,8 @@ export const LoginDetails = styled.div`
     }
 
     input:checked {
-      border: 1px solid #fc6767;
-      background-color: #ec008c;
+      border: 1px solid var(--color-primary);
+      background-color: var(--color-primary);
     }
 
     input:checked + span::before {
@@ -120,8 +122,8 @@ export const LoginDetails = styled.div`
       text-align: center;
       color: white;
       position: absolute;
-      left: 4px;
-      bottom: 1px;
+      left: 7.5px;
+      bottom: 2px;
     }
 
     span {
@@ -131,7 +133,7 @@ export const LoginDetails = styled.div`
 
   a {
     text-decoration: none;
-    color: #ec008c;
+    color: var(--color-primary);
     font-weight: bold;
     font-size: 12px;
   }

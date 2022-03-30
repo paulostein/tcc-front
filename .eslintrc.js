@@ -23,5 +23,9 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/img-redundant-alt': 'off',
+    'jsx-a11y/anchor-has-content': 'off',
+    'jsx-a11y/control-has-associated-label': 'off',
+    'react/jsx-no-target-blank': 'off',
   },
 };
