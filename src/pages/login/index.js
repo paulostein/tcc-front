@@ -50,7 +50,7 @@ export default function Login() {
         <LoginDetails>
           <label>
             <input type="checkbox" name="remember" />
-            <span>Lembrar</span>
+            <span>Manter conectado</span>
           </label>
           <a href="google.com">Esqueceu sua senha?</a>
         </LoginDetails>
