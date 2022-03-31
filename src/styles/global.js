@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
   html, body, #root {
     margin: 0;
     padding: 0;
-    min-height: 100%;
+    min-height: 100vh;
     --color-primary: #3b5998;
     --color-secondary: #E48D48;
     --color-white: #FAFAFA;

@@ -10,9 +10,10 @@ export const Container = styled.div`
   padding: 20px 10px 0 10px;
   display: flex;
   flex-direction: column;
-  z-index: -1;
   justify-content: space-between;
   background-image: url(${bg});
+  left: -1px;
+  top: var(--toolbar-height);
 
   a {
     text-decoration: none;

@@ -8,6 +8,8 @@ export const HeaderContainer = styled.header`
   align-items: center;
   justify-content: space-between;
   box-shadow: 0px 1px 7px 0px var(--color-dark);
+  position: relative;
+  z-index: 1;
 
   .logo {
     color: var(--color-white);
