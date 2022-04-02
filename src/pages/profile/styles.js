@@ -2,20 +2,20 @@ import styled from 'styled-components';
 import bgzin from '../../assets/bgzin.jpg';
 
 export const ProfileContainer = styled.div`
+  height: calc(100vh - var(--toolbar-height));
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  height: calc(100vh - var(--toolbar-height));
+  justify-content: center;
 
   .contents {
     background-image: url(${bgzin});
     background-size: cover;
-    border: 2px solid var(--color-secondary);
     width: 500px;
     padding: 50px;
-    margin-top: 120px;
-    border-radius: 8px;
+    border-radius: 5px;
+    box-shadow: 0px 1px 7px 0px var(--color-dark);
   }
 `;
 
@@ -24,6 +24,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   color: white;
+  border-bottom: 1px solid var(--color-white);
 
   .user-label {
     padding: 5px 0;

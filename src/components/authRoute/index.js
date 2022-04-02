@@ -18,9 +18,7 @@ export default function AuthRoute({ children }) {
     <>
       <Header />
       <SideBar />
-      <Container>
-        <div className="children">{children}</div>
-      </Container>
+      <Container>{children}</Container>
     </>
   );
 }
