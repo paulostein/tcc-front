@@ -10,14 +10,26 @@ export const UtilsContainer = styled.div`
 
 export const UtilsList = styled.div`
   background-image: url(${bgzin});
-  background-size: contain;
+  background-size: cover;
   height: 95%;
   width: 600px;
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   border-radius: 8px;
   box-shadow: 0px 1px 7px 0px var(--color-dark);
+
+  div {
+    width: 100%;
+
+    h1 {
+      color: var(--color-white);
+      border-bottom: 3px solid var(--color-secondary);
+      display: inline;
+      margin: 30px;
+    }
+  }
 
   ul {
     padding: 40px;
@@ -27,7 +39,7 @@ export const UtilsList = styled.div`
       font-size: 22px;
       color: var(--color-white);
       padding: 20px;
-      margin: 50px 0;
+      margin-bottom: 50px;
       border-bottom: 2px solid var(--color-secondary);
 
       span {

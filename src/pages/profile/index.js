@@ -10,19 +10,22 @@ export default function Profile() {
 
   return (
     <ProfileContainer>
-      <div className="contents">
-        <Content>
-          <span className="user-label">Nome</span>
-          <span className="user-info">{user.name}</span>
-        </Content>
-        <Content>
-          <span className="user-label">Email</span>
-          <span className="user-info">{user.email}</span>
-        </Content>
-        <Content>
-          <span className="user-label">Setor</span>
-          <span className="user-info">-</span>
-        </Content>
+      <div className="container">
+        <h1>Meu perfil</h1>
+        <div className="contents">
+          <Content>
+            <span className="user-label">Nome</span>
+            <span className="user-info">{user.name}</span>
+          </Content>
+          <Content>
+            <span className="user-label">Email</span>
+            <span className="user-info">{user.email}</span>
+          </Content>
+          <Content>
+            <span className="user-label">Setor</span>
+            <span className="user-info">-</span>
+          </Content>
+        </div>
       </div>
     </ProfileContainer>
   );

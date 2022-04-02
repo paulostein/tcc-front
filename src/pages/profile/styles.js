@@ -9,13 +9,24 @@ export const ProfileContainer = styled.div`
   align-items: center;
   justify-content: center;
 
-  .contents {
+  h1 {
+    color: var(--color-white);
+    border-bottom: 3px solid var(--color-secondary);
+    display: inline;
+    margin: 30px;
+  }
+
+  .container {
     background-image: url(${bgzin});
     background-size: cover;
     width: 500px;
-    padding: 50px;
     border-radius: 5px;
     box-shadow: 0px 1px 7px 0px var(--color-dark);
+    padding-top: 30px;
+
+    .contents {
+      padding: 15px 50px 50px 50px;
+    }
   }
 `;
 
