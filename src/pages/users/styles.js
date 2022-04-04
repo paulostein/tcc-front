@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Modal from 'styled-react-modal';
 import bgzin from '../../assets/bgzin.jpg';
 
 export const UsersContainer = styled.div`
@@ -6,13 +7,17 @@ export const UsersContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
+
+  .testeModal {
+    background-color: red;
+  }
 `;
 
 export const UsersContent = styled.div`
   background-image: url(${bgzin});
   background-size: cover;
-  height: 95%;
-  width: 75%;
+  height: 850px;
+  width: 900px;
   border-radius: 8px;
   box-shadow: 0px 1px 7px 0px var(--color-dark);
 
@@ -41,15 +46,47 @@ export const UsersListHeader = styled.div`
     border: none;
     color: var(--color-white);
     background-color: var(--color-secondary);
-    border-radius: 12px;
-    width: 70px;
-    border: 2px solid var(--color-white);
-    padding: 10px 0;
-    font-size: 18px;
+    border-radius: 8px;
+    width: 60px;
+    border: 1px solid var(--color-white);
+    padding: 5px 0;
+    font-weight: bold;
   }
 
   button:hover {
     opacity: 0.6;
     transition: 0.8s;
   }
+`;
+
+export const UsersListBody = styled.div`
+  height: 670px;
+  margin: 30px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+
+  table {
+    width: 90%;
+    color: var(--color-white);
+
+    tbody {
+      background-color: rgba(0, 0, 0, 0.1);
+      text-align: center;
+
+      .delete {
+        cursor: pointer;
+      }
+    }
+  }
+`;
+
+export const StyledModal = Modal.styled`
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
 `;

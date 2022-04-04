@@ -1,11 +1,13 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
-import { useApi } from './useApi';
+import { loginApi } from '../services/login';
+import { userApi } from '../services/user';
 
 const SessionContext = createContext({});
 
 function SessionProvider({ children }) {
-  const { signIn, getUserData } = useApi();
+  const { signIn } = loginApi();
+  const { getUserData } = userApi();
   const [session, setSession] = useState({});
 
   function getUserDataByToken(token) {

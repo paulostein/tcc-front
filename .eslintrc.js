@@ -27,5 +27,8 @@ module.exports = {
     'jsx-a11y/anchor-has-content': 'off',
     'jsx-a11y/control-has-associated-label': 'off',
     'react/jsx-no-target-blank': 'off',
+    'no-return-assign': 'off',
+    'react/jsx-no-bind': 'off',
+    'react/jsx-curly-brace-presence': 'off',
   },
 };
