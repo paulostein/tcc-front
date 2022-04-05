@@ -23,7 +23,7 @@ export default function Users() {
   const [isOpen, setIsOpen] = useState(false);
   const [userModal, setUserModal] = useState({});
 
-  useEffect(async () => {
+  async function getAllUser() {
     const { data } = await getUsers(session.token);
     data.sort((a, b) => {
       if (a.id > b.id) {
@@ -35,11 +35,16 @@ export default function Users() {
       return 0;
     });
     setUsers(data);
+  }
+
+  useEffect(() => {
+    getAllUser();
   }, []);
 
   async function handleDeleteUser(id) {
     try {
       await deleteUser(id, session.token);
+      getAllUser();
       alert('Usuário deletado');
     } catch (error) {
       console.log(error);
