@@ -22,4 +22,11 @@ export const userApi = () => ({
     const { data } = await api.delete(`user/${id}`, config);
     return data;
   },
+  createUser: async (user, token) => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { data } = await api.post(`user`, user, config);
+    return data;
+  },
 });

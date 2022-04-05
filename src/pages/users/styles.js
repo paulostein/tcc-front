@@ -83,10 +83,52 @@ export const UsersListBody = styled.div`
 `;
 
 export const StyledModal = Modal.styled`
-  width: 20rem;
+  width: 22rem;
   height: 20rem;
   display: flex;
   align-items: center;
+  flex-direction: column;
+  background-color: var(--color-primary);
+  border-radius: 4px
+`;
+
+export const ModalHeader = styled.div`
+  width: 100%;
+  padding-left: 20px;
+
+  h3 {
+    color: var(--color-white);
+    border-bottom: 2px solid var(--color-secondary);
+    display: inline-block;
+  }
+`;
+
+export const ModalContent = styled.div`
+  width: 100%;
+`;
+
+export const ModalOption = styled.div`
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  background-color: blue;
+  padding: 5px 20px;
+  color: var(--color-white);
+  font-size: 14px;
+`;
+
+export const ModalButtons = styled.div`
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding: 0 20px;
+
+  button {
+    margin: 5px;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+    border: 1px solid var(--color-white);
+    border-radius: 4px;
+  }
 `;
