@@ -23,7 +23,7 @@ export default function Profile() {
           </Content>
           <Content>
             <span className="user-label">Setor</span>
-            <span className="user-info">-</span>
+            <span className="user-info">{user.area.name}</span>
           </Content>
         </div>
       </div>

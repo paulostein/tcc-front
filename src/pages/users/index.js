@@ -47,7 +47,7 @@ export default function Users() {
       getAllUser();
       alert('Usuário deletado');
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -58,12 +58,12 @@ export default function Users() {
 
   async function handleCreateUser() {
     try {
-      const { data } = await createUser(userModal, session.token);
+      await createUser(userModal, session.token);
       alert('Usuário criado');
-      setUsers([...users, { ...userModal, id: data.id }]);
+      getAllUser();
       toggleModal();
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -75,7 +75,9 @@ export default function Users() {
         </div>
         <UsersListHeader>
           <div>
-            <button onClick={toggleModal}>Criar</button>
+            {session.user.area.name === 'Recursos Humanos' && (
+              <button onClick={toggleModal}>Criar</button>
+            )}
           </div>
         </UsersListHeader>
         <UsersListBody>
@@ -85,19 +87,21 @@ export default function Users() {
                 <th>Email</th>
                 <th>Nome</th>
                 <th>Setor</th>
-                <th />
+                {session.user.area.name === 'Recursos Humanos' && <th />}
               </tr>
               {users.map((user) => (
                 <tr key={user.id}>
                   <td>{user.email}</td>
                   <td>{user.name}</td>
-                  <td>-</td>
-                  <td>
-                    <FaTrash
-                      className="delete"
-                      onClick={() => handleDeleteUser(user.id)}
-                    />
-                  </td>
+                  <td>{user.area.name}</td>
+                  {session.user.area.name === 'Recursos Humanos' && (
+                    <td>
+                      <FaTrash
+                        className="delete"
+                        onClick={() => handleDeleteUser(user.id)}
+                      />
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>
@@ -141,7 +145,7 @@ export default function Users() {
             <select
               name="select"
               onChange={(e) =>
-                setUserModal({ ...userModal, area: { id: e.target.value } })
+                setUserModal({ ...userModal, area: { id: +e.target.value } })
               }
             >
               <option value="4" defaultValue>
