@@ -52,7 +52,7 @@ export default function Users() {
   }
 
   function toggleModal() {
-    setUserModal({ areaId: 1 });
+    setUserModal({ area: { id: 4 } });
     setIsOpen(!isOpen);
   }
 
@@ -141,14 +141,14 @@ export default function Users() {
             <select
               name="select"
               onChange={(e) =>
-                setUserModal({ ...userModal, areaId: e.target.value })
+                setUserModal({ ...userModal, area: { id: e.target.value } })
               }
             >
-              <option value="1" defaultValue>
+              <option value="4" defaultValue>
                 RH
               </option>
-              <option value="3">Suporte</option>
-              <option value="2">Desenvolvimento</option>
+              <option value="5">Suporte</option>
+              <option value="6">Desenvolvimento</option>
             </select>
           </ModalOption>
         </ModalContent>

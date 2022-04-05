@@ -11,11 +11,12 @@ function SessionProvider({ children }) {
   const [session, setSession] = useState({});
 
   function getUserDataByToken(token) {
-    const { id, name, email } = jwtDecode(token);
+    const { id, name, email, area } = jwtDecode(token);
     return {
       id,
       name,
       email,
+      area,
     };
   }
 
