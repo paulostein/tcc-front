@@ -7,10 +7,6 @@ export const UsersContainer = styled.div`
   justify-content: center;
   align-items: center;
   height: 100%;
-
-  .testeModal {
-    background-color: red;
-  }
 `;
 
 export const UsersContent = styled.div`
@@ -89,7 +85,8 @@ export const StyledModal = Modal.styled`
   align-items: center;
   flex-direction: column;
   background-color: var(--color-primary);
-  border-radius: 4px
+  border-radius: 4px;
+  margin-left: 220px;
 `;
 
 export const ModalHeader = styled.div`

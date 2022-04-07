@@ -21,7 +21,7 @@ export default function Header() {
   return (
     <HeaderContainer>
       <Link to="/" className="logo">
-        facework
+        Facework
       </Link>
       <Dropdown>
         <Profile>{profile}</Profile>

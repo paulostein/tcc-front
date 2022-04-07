@@ -3,7 +3,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import AuthRoute from './components/authRoute';
-import Home from './pages/home';
+import Feed from './pages/feed';
 import Profile from './pages/profile';
 import Users from './pages/users';
 import Utils from './pages/utils';
@@ -16,7 +16,7 @@ export default function Router() {
           path="/"
           element={
             <AuthRoute>
-              <Home />
+              <Feed />
             </AuthRoute>
           }
         />
