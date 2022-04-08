@@ -3,6 +3,7 @@ import { ImCancelCircle } from 'react-icons/im';
 import { GrAttachment } from 'react-icons/gr';
 
 import { useSession } from '../../hooks/useSession';
+import { postApi } from '../../services/post';
 
 import {
   FeedContainer,
@@ -19,7 +20,8 @@ import {
 
 export default function Feed() {
   const [isOpen, setIsOpen] = useState(false);
-  const [image, setImage] = useState({});
+  const [newPost, setNewPost] = useState({});
+  const { createPost } = postApi();
   const { session } = useSession();
   const { name, area } = session.user;
 
@@ -27,9 +29,28 @@ export default function Feed() {
     const [firstName, surname] = fullName.split(' ', 2);
     return firstName.charAt(0) + surname.charAt(0);
   }
+
   function toggleModal() {
-    setImage({});
+    setNewPost({ area: { id: 7 }, user: { id: session.user.id } });
     setIsOpen(!isOpen);
+  }
+
+  function serializeFormData() {
+    const formData = new FormData();
+
+    Object.keys(newPost).forEach((key) => {
+      formData.set(key, JSON.stringify(newPost[key]));
+      if (key === 'attachment') {
+        formData.set('attachment', newPost.attachment);
+      }
+    });
+
+    return formData;
+  }
+
+  async function handleCreatePost() {
+    const formData = serializeFormData();
+    await createPost(formData, session.token);
   }
 
   return (
@@ -53,7 +74,12 @@ export default function Feed() {
               <Profile>{createProfileLogo(name)}</Profile>
               <div className="options">
                 <span>{name}</span>
-                <select name="select">
+                <select
+                  name="select"
+                  onChange={(e) =>
+                    setNewPost({ ...newPost, area: { id: +e.target.value } })
+                  }
+                >
                   <option value="7" defaultValue>
                     Público
                   </option>
@@ -62,9 +88,17 @@ export default function Feed() {
               </div>
             </ModalProfile>
             <ModalContent>
-              <textarea rows="3" cols="20" />
+              <textarea
+                rows="3"
+                cols="20"
+                onChange={(e) =>
+                  setNewPost({ ...newPost, text: e.target.value })
+                }
+              />
               <div>
-                {image && <ImageName>{image.name}</ImageName>}
+                {newPost.attachment && (
+                  <ImageName>{newPost.attachment.name}</ImageName>
+                )}
                 <label htmlFor="img">
                   <GrAttachment className="input-image" />
                 </label>
@@ -73,12 +107,16 @@ export default function Feed() {
                   id="img"
                   name="img"
                   accept="image/*"
-                  onChange={(e) => setImage(e.target.files[0])}
+                  onChange={(e) =>
+                    setNewPost({ ...newPost, attachment: e.target.files[0] })
+                  }
                 />
               </div>
             </ModalContent>
             <ModalFooter>
-              <button>Publicar</button>
+              <button onClick={handleCreatePost} disabled={!newPost.text}>
+                Publicar
+              </button>
             </ModalFooter>
           </StyledModal>
         </CreatePost>

@@ -162,5 +162,10 @@ export const ModalFooter = styled.div`
     border: none;
     color: var(--color-white);
     border-radius: 8px;
+
+    &:disabled {
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: auto;
+    }
   }
 `;
