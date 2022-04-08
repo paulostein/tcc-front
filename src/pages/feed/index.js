@@ -18,6 +18,7 @@ import {
   ModalFooter,
   ImageName,
   PostContent,
+  WaitingPost,
 } from './styles';
 
 export default function Feed() {
@@ -187,6 +188,11 @@ export default function Feed() {
             )}
           </PostContent>
         ))}
+        {posts.length === 0 && (
+          <WaitingPost>
+            <h1>Aguardando criação de post...</h1>
+          </WaitingPost>
+        )}
       </FeedContent>
     </FeedContainer>
   );

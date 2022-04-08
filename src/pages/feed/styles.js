@@ -224,3 +224,15 @@ export const PostContent = styled.div`
     }
   }
 `;
+
+export const WaitingPost = styled.div`
+  background-color: var(--color-primary);
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  color: var(--color-white);
+  border-radius: 8px;
+`;
