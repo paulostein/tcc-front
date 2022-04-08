@@ -161,9 +161,9 @@ export default function Feed() {
         {posts.map((post) => (
           <PostContent key={post.id}>
             <div className="profile">
-              <Profile>{createProfileLogo(name)}</Profile>
+              <Profile>{createProfileLogo(post.user.name)}</Profile>
               <div className="info">
-                <span>{name}</span>
+                <span>{post.user.name}</span>
                 <div className="post-info">
                   <span>
                     {post.area.name === 'all' ? 'Público' : post.area.name}
