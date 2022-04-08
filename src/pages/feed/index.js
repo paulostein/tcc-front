@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import { GrAttachment } from 'react-icons/gr';
+import { FaTrash } from 'react-icons/fa';
 
 import { useSession } from '../../hooks/useSession';
 import { postApi } from '../../services/post';
@@ -16,14 +17,34 @@ import {
   ModalContent,
   ModalFooter,
   ImageName,
+  PostContent,
 } from './styles';
 
 export default function Feed() {
   const [isOpen, setIsOpen] = useState(false);
   const [newPost, setNewPost] = useState({});
-  const { createPost } = postApi();
+  const [posts, setPosts] = useState([]);
+  const { createPost, getPosts, deletePost } = postApi();
   const { session } = useSession();
   const { name, area } = session.user;
+
+  async function getAllPosts() {
+    const { data } = await getPosts(session.token);
+    data.sort((a, b) => {
+      if (a.id > b.id) {
+        return -1;
+      }
+      if (a.id < b.id) {
+        return 1;
+      }
+      return 0;
+    });
+    setPosts(data);
+  }
+
+  useEffect(() => {
+    getAllPosts();
+  }, []);
 
   function createProfileLogo(fullName) {
     const [firstName, surname] = fullName.split(' ', 2);
@@ -49,8 +70,24 @@ export default function Feed() {
   }
 
   async function handleCreatePost() {
-    const formData = serializeFormData();
-    await createPost(formData, session.token);
+    try {
+      const formData = serializeFormData();
+      await createPost(formData, session.token);
+      getAllPosts();
+      toggleModal();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  async function handleDeletePost(id) {
+    try {
+      await deletePost(id, session.token);
+      getAllPosts();
+      alert('Post deletado');
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
@@ -120,6 +157,36 @@ export default function Feed() {
             </ModalFooter>
           </StyledModal>
         </CreatePost>
+        {posts.map((post) => (
+          <PostContent key={post.id}>
+            <div className="profile">
+              <Profile>{createProfileLogo(name)}</Profile>
+              <div className="info">
+                <span>{name}</span>
+                <div className="post-info">
+                  <span>
+                    {post.area.name === 'all' ? 'Público' : post.area.name}
+                  </span>
+                  {session.user.id === post.user.id && (
+                    <FaTrash
+                      className="post-delete"
+                      onClick={() => handleDeletePost(post.id)}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
+            <div className="post-text">{post.text}</div>
+            {post.attachment && (
+              <div className="img-div">
+                <img
+                  src={`http://localhost:3001/public/${post.attachment}`}
+                  alt="attachment"
+                />
+              </div>
+            )}
+          </PostContent>
+        ))}
       </FeedContent>
     </FeedContainer>
   );

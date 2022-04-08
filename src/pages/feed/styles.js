@@ -169,3 +169,58 @@ export const ModalFooter = styled.div`
     }
   }
 `;
+
+export const PostContent = styled.div`
+  background-color: var(--color-primary);
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 4px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+
+  .profile {
+    display: flex;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+
+    .info {
+      width: 90%;
+      display: flex;
+      justify-content: space-between;
+      color: var(--color-white);
+
+      .post-info {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+
+      .post-delete {
+        cursor: pointer;
+        font-size: 18px;
+      }
+    }
+  }
+
+  .post-text {
+    padding: 10px 15px 0 15px;
+    color: var(--color-white);
+    word-break: break-all;
+  }
+
+  .img-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      padding: 10px 15px 0 15px;
+      height: auto;
+      width: auto;
+      max-height: 400px;
+    }
+  }
+`;

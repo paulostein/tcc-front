@@ -6,7 +6,21 @@ export const postApi = () => ({
       headers: { Authorization: `Bearer ${token}` },
     };
     const { data } = await api.post(`post`, post, config);
-    console.log(data);
+    return data;
+  },
+  getPosts: async (token) => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { data } = await api.get(`post`, config);
+    return data;
+  },
+
+  deletePost: async (id, token) => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const { data } = await api.delete(`post/${id}`, config);
     return data;
   },
 });

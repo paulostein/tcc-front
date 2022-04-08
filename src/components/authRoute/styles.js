@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin-left: 220px;
+  padding-top: var(--toolbar-height);
   background-size: cover;
   background-position: center;
-  height: calc(100vh - var(--toolbar-height));
+  height: 100vh;
 `;
