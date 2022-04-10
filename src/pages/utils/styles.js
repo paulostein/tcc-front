@@ -32,8 +32,9 @@ export const UtilsList = styled.div`
   }
 
   ul {
-    padding: 40px;
+    padding: 20px 40px;
     list-style: none;
+    margin: 0;
 
     li {
       font-size: 22px;
@@ -43,15 +44,18 @@ export const UtilsList = styled.div`
       border-bottom: 2px solid var(--color-secondary);
 
       span {
-        padding-right: 30px;
+        padding-right: 10px;
       }
 
       a {
         color: var(--color-white);
         text-decoration: underline;
-        padding: 10px 20px;
+        padding: 10px;
         border-radius: 4px;
         background-color: rgba(0, 0, 0, 0.3);
+        display: inline-block;
+        width: 150px;
+        text-align: center;
       }
 
       a:hover {
