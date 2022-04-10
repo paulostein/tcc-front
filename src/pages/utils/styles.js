@@ -32,7 +32,7 @@ export const UtilsList = styled.div`
   }
 
   ul {
-    padding: 20px 40px;
+    padding: 20px 40px 0 40px;
     list-style: none;
     margin: 0;
 
