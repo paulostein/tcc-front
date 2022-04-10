@@ -133,7 +133,15 @@ export default function Feed() {
                   setNewPost({ ...newPost, text: e.target.value })
                 }
               />
-              <div>
+              {newPost.attachment && (
+                <div className="image-attachment">
+                  <img
+                    src={URL.createObjectURL(newPost.attachment)}
+                    alt="attachment"
+                  />
+                </div>
+              )}
+              <div className="attachment">
                 {newPost.attachment && (
                   <ImageName>{newPost.attachment.name}</ImageName>
                 )}

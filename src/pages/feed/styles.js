@@ -50,7 +50,7 @@ export const Profile = styled.div`
 
 export const StyledModal = Modal.styled`
   width: 34rem;
-  height: 24rem;
+  min-height: 23rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -108,12 +108,12 @@ export const ModalProfile = styled.div`
 
 export const ModalContent = styled.div`
   width: 93%;
-  height: 200px;
+  min-height: 170px;
   border: 2px solid rgba(0, 0, 0, 0.2);
 
   textarea {
     width: 100%;
-    height: 85%;
+    height: 130px;
     border: none;
     font-size: 20px;
     background-color: var(--color-primary);
@@ -122,12 +122,23 @@ export const ModalContent = styled.div`
     border-radius: 4px;
   }
 
-  div {
+  .image-attachment {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      max-width: 100%;
+      padding: 10px;
+    }
+  }
+
+  .attachment {
     width: 100%;
     display: flex;
     text-align: center;
     justify-content: flex-end;
-    padding: 0 10px 10px 0;
+    padding-right: 10px;
 
     input[type='file'] {
       display: none;
@@ -151,12 +162,14 @@ export const ImageName = styled.div`
 
 export const ModalFooter = styled.div`
   width: 100%;
-  height: 40px;
+  height: 60px;
   padding: 0 15px;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 15px;
 
   button {
     width: 100%;
-    margin: 10px 0;
     padding: 10px 0;
     background-color: rgba(0, 0, 0, 0.3);
     border: none;
