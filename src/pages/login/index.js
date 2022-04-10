@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import { useSession } from '../../hooks/useSession';
+import image from '../../assets/people.jpg';
+import logo from '../../assets/facework.jpg';
+
 import {
   Container,
   LoginBox,
@@ -8,7 +12,6 @@ import {
   FormInput,
   LoginDetails,
 } from './styles';
-import image from '../../assets/people.jpg';
 
 export default function Login() {
   const { setUserSession } = useSession();
@@ -29,6 +32,7 @@ export default function Login() {
         <img src={image} alt="image" />
       </ImageContent>
       <LoginBox>
+        <img src={logo} alt="logo" />
         <h1>Bem-vindo!</h1>
         <span>Entre para continuar usando o Facework</span>
         <FormInput>
