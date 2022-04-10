@@ -53,10 +53,15 @@ export default function Login() {
         </FormInput>
         <LoginDetails>
           <label>
-            <input type="checkbox" name="remember" />
+            <input type="checkbox" name="remember" checked />
             <span>Manter conectado</span>
           </label>
-          <a href="google.com">Esqueceu sua senha?</a>
+          <div
+            className="forgot-password"
+            onClick={() => alert('Entre em contato com o RH.')}
+          >
+            Esqueceu sua senha?
+          </div>
         </LoginDetails>
         <button onClick={handleSignIn}>Entrar</button>
       </LoginBox>

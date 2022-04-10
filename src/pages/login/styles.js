@@ -8,6 +8,7 @@ export const Container = styled.div`
 export const ImageContent = styled.div`
   flex: 2;
   height: 100%;
+  filter: blur(2px);
 
   img {
     width: 100%;
@@ -22,7 +23,11 @@ export const LoginBox = styled.div`
   padding: 36px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  img {
+    margin: 25px 0;
+    width: 100%;
+  }
 
   h1 {
     color: var(--color-primary);
@@ -131,10 +136,11 @@ export const LoginDetails = styled.div`
     }
   }
 
-  a {
+  .forgot-password {
     text-decoration: none;
     color: var(--color-primary);
     font-weight: bold;
     font-size: 12px;
+    cursor: pointer;
   }
 `;
