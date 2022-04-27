@@ -70,7 +70,11 @@ export default function Users() {
     }
   }
 
-  function toggleEditModal() {
+  function toggleEditModal(user = {}) {
+    if (user.id) {
+      const { password, ...userWithoutPassword } = user;
+      setEditedUser(userWithoutPassword);
+    }
     setIsEditOpen(!isEditOpen);
   }
 
@@ -125,7 +129,7 @@ export default function Users() {
                     <td>
                       <TiEdit
                         className="edit"
-                        onClick={() => (setEditedUser(user), toggleEditModal())}
+                        onClick={() => toggleEditModal(user)}
                       />
                       <StyledModal
                         isOpen={isEditOpen}
