@@ -209,8 +209,8 @@ export default function Feed() {
                     />
                   </div>
                 ) : (
-                  <div className="img-div">
-                    <video width="400" controls>
+                  <div className="video-div">
+                    <video controls>
                       <source
                         src={`http://localhost:3001/api/video/${post.attachment}`}
                         type={post.attachmentType}

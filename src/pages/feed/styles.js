@@ -236,6 +236,19 @@ export const PostContent = styled.div`
       max-height: 400px;
     }
   }
+
+  .video-div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    video {
+      height: auto;
+      width: auto;
+      max-height: 400px;
+    }
+  }
 `;
 
 export const WaitingPost = styled.div`
