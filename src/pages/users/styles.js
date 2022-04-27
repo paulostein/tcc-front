@@ -71,7 +71,8 @@ export const UsersListBody = styled.div`
       background-color: rgba(0, 0, 0, 0.1);
       text-align: center;
 
-      .delete {
+      .delete,
+      .edit {
         cursor: pointer;
       }
     }

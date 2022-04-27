@@ -32,5 +32,7 @@ module.exports = {
     'react/jsx-curly-brace-presence': 'off',
     'jsx-a11y/media-has-caption': 'off',
     'import/no-absolute-path': 'off',
+    'no-sequences': 'off',
+    'react/jsx-boolean-value': 'off',
   },
 };
