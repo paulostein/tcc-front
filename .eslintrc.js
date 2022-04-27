@@ -30,5 +30,7 @@ module.exports = {
     'no-return-assign': 'off',
     'react/jsx-no-bind': 'off',
     'react/jsx-curly-brace-presence': 'off',
+    'jsx-a11y/media-has-caption': 'off',
+    'import/no-absolute-path': 'off',
   },
 };

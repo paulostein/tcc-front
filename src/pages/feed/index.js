@@ -134,11 +134,24 @@ export default function Feed() {
                 }
               />
               {newPost.attachment && (
-                <div className="image-attachment">
-                  <img
-                    src={URL.createObjectURL(newPost.attachment)}
-                    alt="attachment"
-                  />
+                <div>
+                  {newPost.attachment.type.includes('image') ? (
+                    <div className="image-attachment">
+                      <img
+                        src={URL.createObjectURL(newPost.attachment)}
+                        alt="attachment"
+                      />
+                    </div>
+                  ) : (
+                    <div className="image-attachment">
+                      <video width="400" controls>
+                        <source
+                          src={URL.createObjectURL(newPost.attachment)}
+                          type={newPost.attachment.type}
+                        />
+                      </video>
+                    </div>
+                  )}
                 </div>
               )}
               <div className="attachment">
@@ -152,7 +165,7 @@ export default function Feed() {
                   type="file"
                   id="img"
                   name="img"
-                  accept="image/*"
+                  accept="video/*|image/*"
                   onChange={(e) =>
                     setNewPost({ ...newPost, attachment: e.target.files[0] })
                   }
@@ -187,11 +200,24 @@ export default function Feed() {
             </div>
             <div className="post-text">{post.text}</div>
             {post.attachment && (
-              <div className="img-div">
-                <img
-                  src={`http://localhost:3001/public/${post.attachment}`}
-                  alt="attachment"
-                />
+              <div>
+                {post.attachmentType.includes('image') ? (
+                  <div className="img-div">
+                    <img
+                      src={`http://localhost:3001/public/${post.attachment}`}
+                      alt="attachment"
+                    />
+                  </div>
+                ) : (
+                  <div className="img-div">
+                    <video width="400" controls>
+                      <source
+                        src={`http://localhost:3001/api/video/${post.attachment}`}
+                        type={post.attachmentType}
+                      />
+                    </video>
+                  </div>
+                )}
               </div>
             )}
           </PostContent>
