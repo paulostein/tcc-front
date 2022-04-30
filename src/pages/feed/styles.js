@@ -203,6 +203,15 @@ export const PostContent = styled.div`
       justify-content: space-between;
       color: var(--color-white);
 
+      .info-detail {
+        display: flex;
+        flex-direction: column;
+
+        .detail-date {
+          font-size: 12px;
+        }
+      }
+
       .post-info {
         display: flex;
         flex-direction: column;

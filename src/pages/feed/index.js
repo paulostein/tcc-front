@@ -5,6 +5,7 @@ import { FaTrash } from 'react-icons/fa';
 
 import { useSession } from '../../hooks/useSession';
 import { postApi } from '../../services/post';
+import formatDate from '../../utils/formatDate';
 
 import {
   FeedContainer,
@@ -31,15 +32,17 @@ export default function Feed() {
 
   async function getAllPosts() {
     const { data } = await getPosts(session.token);
-    data.sort((a, b) => {
-      if (a.id > b.id) {
-        return -1;
-      }
-      if (a.id < b.id) {
-        return 1;
-      }
-      return 0;
-    });
+    data
+      .sort((a, b) => {
+        if (a.id > b.id) {
+          return -1;
+        }
+        if (a.id < b.id) {
+          return 1;
+        }
+        return 0;
+      })
+      .forEach((item) => (item.createAt = formatDate(new Date(item.createAt))));
     setPosts(data);
   }
 
@@ -184,7 +187,10 @@ export default function Feed() {
             <div className="profile">
               <Profile>{createProfileLogo(post.user.name)}</Profile>
               <div className="info">
-                <span>{post.user.name}</span>
+                <div className="info-detail">
+                  <span>{post.user.name}</span>
+                  <span className="detail-date">{post.createAt}</span>
+                </div>
                 <div className="post-info">
                   <span>
                     {post.area.name === 'all' ? 'Público' : post.area.name}

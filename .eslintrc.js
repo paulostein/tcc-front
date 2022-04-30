@@ -34,5 +34,6 @@ module.exports = {
     'import/no-absolute-path': 'off',
     'no-sequences': 'off',
     'react/jsx-boolean-value': 'off',
+    'no-param-reassign': 'off',
   },
 };
