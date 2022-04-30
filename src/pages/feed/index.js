@@ -47,7 +47,9 @@ export default function Feed() {
         }
         return 0;
       })
-      .forEach((item) => (item.createAt = formatDate(new Date(item.createAt))));
+      .forEach(
+        (item) => (item.formatedDate = formatDate(new Date(item.createAt)))
+      );
     setPosts(data);
   }
 
@@ -100,7 +102,29 @@ export default function Feed() {
   }
 
   function handleFilter() {
-    console.log(filter);
+    const filteredPosts = posts.filter((post) => {
+      let shouldFilter = true;
+      if (filter.text) {
+        shouldFilter = shouldFilter ? post.text.includes(filter.text) : false;
+      }
+      if (filter.area) {
+        shouldFilter = shouldFilter ? post.area.id === filter.area : false;
+      }
+
+      if (filter.greaterDate) {
+        shouldFilter = shouldFilter
+          ? new Date(post.createAt) >= new Date(`${filter.greaterDate} 1:`)
+          : false;
+      }
+
+      if (filter.lowerDate) {
+        shouldFilter = shouldFilter
+          ? new Date(post.createAt) <= new Date(`${filter.lowerDate} 1:`)
+          : false;
+      }
+      return shouldFilter;
+    });
+    console.log(filteredPosts);
   }
 
   return (
@@ -121,7 +145,7 @@ export default function Feed() {
                 onChange={(e) =>
                   setFilter({
                     ...filter,
-                    area: e.target.value,
+                    area: +e.target.value,
                   })
                 }
               >
@@ -250,7 +274,7 @@ export default function Feed() {
               <div className="info">
                 <div className="info-detail">
                   <span>{post.user.name}</span>
-                  <span className="detail-date">{post.createAt}</span>
+                  <span className="detail-date">{post.formatedDate}</span>
                 </div>
                 <div className="post-info">
                   <span>
