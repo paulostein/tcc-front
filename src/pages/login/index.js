@@ -53,7 +53,7 @@ export default function Login() {
         </FormInput>
         <LoginDetails>
           <label>
-            <input type="checkbox" name="remember" checked />
+            <input type="checkbox" name="remember" />
             <span>Manter conectado</span>
           </label>
           <div

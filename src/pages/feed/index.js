@@ -125,7 +125,7 @@ export default function Feed() {
                   })
                 }
               >
-                <option value="0">-</option>
+                <option value="">-</option>
                 <option value="7">Público</option>
                 <option value={area.id}>Meu setor</option>
               </select>
