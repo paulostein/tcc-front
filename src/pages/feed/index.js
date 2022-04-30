@@ -101,8 +101,8 @@ export default function Feed() {
     }
   }
 
-  function handleFilter() {
-    const filteredPosts = posts.filter((post) => {
+  async function handleFilter() {
+    const filteredPosts = posts.map((post) => {
       let shouldFilter = true;
       if (filter.text) {
         shouldFilter = shouldFilter ? post.text.includes(filter.text) : false;
@@ -122,9 +122,12 @@ export default function Feed() {
           ? new Date(post.createAt) <= new Date(`${filter.lowerDate} 1:`)
           : false;
       }
-      return shouldFilter;
+      return {
+        ...post,
+        shouldFilter: !shouldFilter,
+      };
     });
-    console.log(filteredPosts);
+    setPosts(filteredPosts);
   }
 
   return (
@@ -268,50 +271,54 @@ export default function Feed() {
           </StyledModal>
         </CreatePost>
         {posts.map((post) => (
-          <PostContent key={post.id}>
-            <div className="profile">
-              <Profile>{createProfileLogo(post.user.name)}</Profile>
-              <div className="info">
-                <div className="info-detail">
-                  <span>{post.user.name}</span>
-                  <span className="detail-date">{post.formatedDate}</span>
-                </div>
-                <div className="post-info">
-                  <span>
-                    {post.area.name === 'all' ? 'Público' : post.area.name}
-                  </span>
-                  {session.user.id === post.user.id && (
-                    <FaTrash
-                      className="post-delete"
-                      onClick={() => handleDeletePost(post.id)}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className="post-text">{post.text}</div>
-            {post.attachment && (
-              <div>
-                {post.attachmentType.includes('image') ? (
-                  <div className="img-div">
-                    <img
-                      src={`http://localhost:3001/public/${post.attachment}`}
-                      alt="attachment"
-                    />
+          <div className="post-content">
+            {!post.shouldFilter && (
+              <PostContent key={post.id}>
+                <div className="profile">
+                  <Profile>{createProfileLogo(post.user.name)}</Profile>
+                  <div className="info">
+                    <div className="info-detail">
+                      <span>{post.user.name}</span>
+                      <span className="detail-date">{post.formatedDate}</span>
+                    </div>
+                    <div className="post-info">
+                      <span>
+                        {post.area.name === 'all' ? 'Público' : post.area.name}
+                      </span>
+                      {session.user.id === post.user.id && (
+                        <FaTrash
+                          className="post-delete"
+                          onClick={() => handleDeletePost(post.id)}
+                        />
+                      )}
+                    </div>
                   </div>
-                ) : (
-                  <div className="video-div">
-                    <video controls>
-                      <source
-                        src={`http://localhost:3001/api/video/${post.attachment}`}
-                        type={post.attachmentType}
-                      />
-                    </video>
+                </div>
+                <div className="post-text">{post.text}</div>
+                {post.attachment && (
+                  <div>
+                    {post.attachmentType.includes('image') ? (
+                      <div className="img-div">
+                        <img
+                          src={`http://localhost:3001/public/${post.attachment}`}
+                          alt="attachment"
+                        />
+                      </div>
+                    ) : (
+                      <div className="video-div">
+                        <video controls>
+                          <source
+                            src={`http://localhost:3001/api/video/${post.attachment}`}
+                            type={post.attachmentType}
+                          />
+                        </video>
+                      </div>
+                    )}
                   </div>
                 )}
-              </div>
+              </PostContent>
             )}
-          </PostContent>
+          </div>
         ))}
         {posts.length === 0 && (
           <WaitingPost>

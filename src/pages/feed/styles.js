@@ -15,6 +15,10 @@ export const FeedContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+
+  .post-content {
+    width: 100%;
+  }
 `;
 
 export const FilterContainer = styled.div`
