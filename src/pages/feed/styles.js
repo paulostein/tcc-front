@@ -12,14 +12,86 @@ export const FeedContent = styled.div`
   background-size: cover;
   height: 100%;
   width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+export const FilterContainer = styled.div`
+  display: flex;
+  margin-top: 30px;
+  height: 70px;
+  background-color: var(--color-primary);
+  border-radius: 8px;
+  padding: 15px;
+
+  .filter-icon {
+    color: var(--color-white);
+    font-size: 22px;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .filter-icon:hover {
+    opacity: 0.6;
+  }
+`;
+
+export const FilterOptions = styled.div`
+  display: ${(props) => (props.open ? 'flex' : 'none')};
+  align-items: center;
+  margin-right: 10px;
+  justify-content: space-around;
+  width: 818px;
+
+  .filter-button {
+    width: 10%;
+    height: 35px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    border: none;
+    color: var(--color-white);
+  }
+
+  .filter-button:hover {
+    opacity: 0.6;
+  }
+
+  .filter-option {
+    width: 18%;
+
+    span {
+      font-size: 14px;
+      color: var(--color-white);
+      display: inline-block;
+      width: 100%;
+    }
+
+    input,
+    select {
+      color: var(--color-white);
+      width: 100%;
+      border: none;
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: 5px;
+      border-radius: 4px;
+    }
+  }
 `;
 
 export const CreatePost = styled.div`
+  margin-top: 10px;
   height: 90px;
+  width: 100%;
   padding: 25px;
   display: flex;
   background-color: var(--color-primary);
-  margin-top: 30px;
   border-radius: 8px;
 
   .create-post {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import { GrAttachment } from 'react-icons/gr';
 import { FaTrash } from 'react-icons/fa';
+import { MdOutlineFilterAlt } from 'react-icons/md';
 
 import { useSession } from '../../hooks/useSession';
 import { postApi } from '../../services/post';
@@ -10,6 +11,8 @@ import formatDate from '../../utils/formatDate';
 import {
   FeedContainer,
   FeedContent,
+  FilterContainer,
+  FilterOptions,
   CreatePost,
   Profile,
   StyledModal,
@@ -24,8 +27,10 @@ import {
 
 export default function Feed() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [newPost, setNewPost] = useState({});
   const [posts, setPosts] = useState([]);
+  const [filter, setFilter] = useState({});
   const { createPost, getPosts, deletePost } = postApi();
   const { session } = useSession();
   const { name, area } = session.user;
@@ -94,9 +99,65 @@ export default function Feed() {
     }
   }
 
+  function handleFilter() {
+    console.log(filter);
+  }
+
   return (
     <FeedContainer>
       <FeedContent>
+        <FilterContainer>
+          <FilterOptions open={isFilterOpen}>
+            <div className="filter-option">
+              <span>Texto</span>
+              <input
+                onChange={(e) => setFilter({ ...filter, text: e.target.value })}
+              />
+            </div>
+            <div className="filter-option">
+              <span>Setor</span>
+              <select
+                name="select"
+                onChange={(e) =>
+                  setFilter({
+                    ...filter,
+                    area: e.target.value,
+                  })
+                }
+              >
+                <option value="0">-</option>
+                <option value="7">Público</option>
+                <option value={area.id}>Meu setor</option>
+              </select>
+            </div>
+            <div className="filter-option">
+              <span>Maior que</span>
+              <input
+                type="date"
+                onChange={(e) =>
+                  setFilter({ ...filter, greaterDate: e.target.value })
+                }
+              />
+            </div>
+            <div className="filter-option">
+              <span>Menor que</span>
+              <input
+                type="date"
+                onChange={(e) =>
+                  setFilter({ ...filter, lowerDate: e.target.value })
+                }
+              />
+            </div>
+            <button className="filter-button" onClick={handleFilter}>
+              Filtrar
+            </button>
+          </FilterOptions>
+          <div className="filter-icon">
+            <MdOutlineFilterAlt
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+            />
+          </div>
+        </FilterContainer>
         <CreatePost>
           <Profile>{createProfileLogo(name)}</Profile>
           <button onClick={toggleModal} className="create-post">
